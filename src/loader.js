@@ -8,9 +8,24 @@ module.exports = function (source) {
 
     this.cacheable();
 
-    if ('prefix' in options && options.prefix) {
+    let newSource = source;
+    for(let i in tag) {
+        const reg1 = new RegExp(`<${i}`, 'g');
+        newSource = newSource.replace(reg1, `<${tag[i]}`);
 
+        const reg2 = new RegExp(`<\/${i}>`, 'g');
+        newSource = newSource.replace(reg2, `<\/${tag[i]}>`);
     }
 
-    return source.replace('<Select', '<select');
+    if ('prefix' in options && options.prefix) {
+        for(let i in prefixTag) {
+            const reg1 = new RegExp(`<${i}`, 'g');
+            newSource = newSource.replace(reg1, `<${prefixTag[i]}`);
+
+            const reg2 = new RegExp(`<\/${i}>`, 'g');
+            newSource = newSource.replace(reg2, `<\/${prefixTag[i]}>`);
+        }
+    }
+
+    return newSource;
 };
