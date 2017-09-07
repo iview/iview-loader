@@ -15,7 +15,7 @@ module.exports = {
                 {
                     loader: require.resolve("../index.js"),
                     options: {
-
+                        prefix: true
                     }
                 }
             ]
