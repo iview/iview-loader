@@ -3,29 +3,29 @@
 const loaderUtils = require('loader-utils');
 const { tag, prefixTag } = require('./tag-map');
 
+function replaceTag(source, tagMap) {
+    for (let i in tagMap) {
+        const reg1 = new RegExp(`<${i}(?!-)`, 'g');
+        source = source.replace(reg1, `<${tagMap[i]}`);
+
+        const reg2 = new RegExp(`<\/${i}>`, 'g');
+        source = source.replace(reg2, `<\/${tagMap[i]}>`);
+    }
+    return source
+}
+
 module.exports = function (source) {
     const options = loaderUtils.getOptions(this);
 
     this.cacheable();
 
     let newSource = source;
-    for(let i in tag) {
-        const reg1 = new RegExp(`<${i}`, 'g');
-        newSource = newSource.replace(reg1, `<${tag[i]}`);
-
-        const reg2 = new RegExp(`<\/${i}>`, 'g');
-        newSource = newSource.replace(reg2, `<\/${tag[i]}>`);
-    }
+    newSource = replaceTag(newSource, tag)
 
     if ('prefix' in options && options.prefix) {
-        for(let i in prefixTag) {
-            const reg1 = new RegExp(`<${i}`, 'g');
-            newSource = newSource.replace(reg1, `<${prefixTag[i]}`);
-
-            const reg2 = new RegExp(`<\/${i}>`, 'g');
-            newSource = newSource.replace(reg2, `<\/${prefixTag[i]}>`);
-        }
+        newSource = replaceTag(newSource, prefixTag)
     }
 
+    console.log(newSource)
     return newSource;
 };
