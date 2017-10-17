@@ -47,6 +47,7 @@ exports.prefixTag = {
     'i-radio-group': 'RadioGroup',
     'i-rate': 'Rate',
     'i-row': 'Row',
+    'i-scroll': 'Scroll',
     'i-select': 'Select',
     'i-slider': 'Slider',
     'i-spin': 'Spin',
