@@ -30,6 +30,7 @@ exports.prefixTag = {
     'i-content': 'Content',
     'i-date-picker': 'DatePicker',
     'i-divider': 'Divider',
+    'i-drawer': 'Drawer',
     'i-dropdown': 'Dropdown',
     'i-dropdown-item': 'DropdownItem',
     'i-dropdown-menu': 'DropdownMenu',
