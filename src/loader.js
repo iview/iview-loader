@@ -5,7 +5,7 @@ const { tag, prefixTag } = require('./tag-map');
 
 function replaceTag(source, tagMap) {
     Object.keys(tagMap).forEach(i => {
-        source = source.replace(new RegExp(`<${i}(?!-)`, 'g'), `<${tagMap[i]}`)
+        source = source.replace(new RegExp(`<${i}(?![-a-zA-Z])`, 'g'), `<${tagMap[i]}`)
             .replace(new RegExp(`<\/${i}>`, 'g'), `<\/${tagMap[i]}>`);
     })
     return source;
